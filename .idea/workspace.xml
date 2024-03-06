@@ -4,7 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="5cff65ab-207b-45b4-9a85-328fd287ea38" name="Changes" comment="" />
+    <list default="true" id="5cff65ab-207b-45b4-9a85-328fd287ea38" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Casino.py" beforeDir="false" afterPath="$PROJECT_DIR$/Casino.py" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -18,7 +21,13 @@
     </option>
   </component>
   <component name="Git.Settings">
-    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="master" />
+      </map>
+    </option>
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+    <option name="ROOT_SYNC" value="SYNC" />
   </component>
   <component name="ProblemsViewState">
     <option name="selectedTabId" value="CurrentFile" />
@@ -37,15 +46,17 @@
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
     "Python.Calculator.executor": "Run",
+    "Python.Casino.executor": "Run",
     "Python.Client.executor": "Debug",
     "Python.IP.executor": "Run",
     "Python.Server.executor": "Run",
+    "Python.dsd.executor": "Run",
     "Python.fdf.executor": "Run",
     "Python.test.executor": "Run",
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "git-widget-placeholder": "master",
-    "last_opened_file_path": "/home/roma/Desktop",
+    "last_opened_file_path": "/home/roma/Desktop/casino",
     "settings.editor.selected.configurable": "preferences.lookFeel"
   }
 }]]></component>
