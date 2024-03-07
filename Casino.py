@@ -30,11 +30,5 @@ def play_game():
     # second logic up betts, rolling, calculate gaings,
 
 if __name__ == "__main__":
+    # just dummy line
     play_game()
-
-
-
-
-
-
-
