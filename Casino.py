@@ -1,40 +1,49 @@
 import random
+import math
 
-symbols = ["apple", "pear", "cherry", "orange", "jackpot", "zero"]
-#chances for fruits
-chances = {
-    "apple": 0.2,    # x1
-    "pear": 0.1,     # x1.5
-    "zero": 0.3,     # x0
-    "cherry": 0.1,   # x5
-    "orange": 0.2,   # x0.5 coefficient
-    "jackpot": 0.1   # won all
-}
+def get_Bet():
+    while True:
+        Bet = input("Make A Bet: ")
+        if Bet.isdigit():
+            return int(Bet)
+        else:
+            print("Your Bet:", Bet, "is incorrect")
 
-def spin():
-    """Rolling game machine"""
-    result = []
-    for _ in range(3):
-        symbol = random.choices(symbols, weights=list(chances.values()))[0]
-        result.append(symbol)
-    return result
+def game_logic():
+    Symbols = ["apple", "pear", "cherry", "orange", "jackpot", "zero"]
+    apple, pear, zero, cherry, orange, jackpot = 1, 1.5, 0, 5, 0.5, 777
+    apple_chance, pear_chance, zero_chance, cherry_chance, orange_chance, jackpot_chance = 0.2, 0.1, 0.3, 0.1, 0.2, 0.1
+    Coefficient = {
+        apple: 1,
+        pear: 1.5,
+        zero: 0,
+        cherry: 5,
+        orange: 0.5,
+        jackpot: 777
+    }
 
-def calculate_payout(spin_result, bet):
-    """Calculation of winnings or losses"""
-#Personally game logic
-#comeback result
+    chances = {
+        "apple": 20,
+        "pear": 10,
+        "zero": 30,
+        "cherry": 5,
+        "orange": 35,
+        "jackpot": 0.01
+    }
 
-def play_game():
-    """Button to start the game"""
-    bet = 0  # Players wager
-    # second logic up betts, rolling, calculate gaings,
-
-if __name__ == "__main__":
-    play_game()
-
-
-
-
-
+    def spin(chances):
+        result = []
+        for _ in range(3):
+            symbols = random.choices(Symbols, weights=list(chances.values()), k=3)
+            result.append(symbols)
+        return '\n'.join([str(x) for x in result])
 
 
+    while True:
+        bet = get_Bet()
+        if bet:
+            spin_result = spin(chances)
+            print("Spin result:\n\n",spin_result)
+            break
+
+game_logic()
