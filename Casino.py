@@ -1,5 +1,6 @@
 import random
 import math
+import time
 
 def get_Bet():
     while True:
@@ -43,7 +44,19 @@ def game_logic():
         bet = get_Bet()
         if bet:
             spin_result = spin(chances)
+            for _ in range(1):
+                print("rolling\n")
+                time.sleep(1)
+
+            for _ in range(1):
+                print("rolling\n")
+                time.sleep(1)
+
+            for _ in range(1):
+                print("rolling\n")
+                time.sleep(1)
             print("Spin result:\n\n",spin_result)
-            break
+            break #тимчасово
+
 
 game_logic()
