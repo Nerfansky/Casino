@@ -39,24 +39,18 @@ def game_logic():
             result.append(symbols)
         return '\n'.join([str(x) for x in result])
 
-
     while True:
         bet = get_Bet()
         if bet:
             spin_result = spin(chances)
-            for _ in range(1):
+
+            for _ in range(3):
                 print("rolling\n")
                 time.sleep(1)
 
-            for _ in range(1):
-                print("rolling\n")
-                time.sleep(1)
+            print("Spin result:\n\n", spin_result)
 
-            for _ in range(1):
-                print("rolling\n")
-                time.sleep(1)
-            print("Spin result:\n\n",spin_result)
-            break #тимчасово
+            break  #тимчасово
 
 
 game_logic()
