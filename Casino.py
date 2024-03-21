@@ -5,19 +5,16 @@ import os
 from statistics import mean
 
 
-def get_Bet():
+def get_Bet(balance):
     while True:
         try:
-            Bet = input("Make A Bet: ")
-            if Bet.isdigit():
-                if int(Bet) < 101:
-                    return int(Bet)
-                else:
-                    print("Your Bet:", Bet, "is too high")
+            bet = int(input("Make A Bet (Your Balance is {}): ".format(balance)))
+            if bet > 0 and bet <= balance:
+                return bet
             else:
-                print("Your Bet:", Bet, "is incorrect")
-        except KeyboardInterrupt:
-            raise KeyboardInterrupt
+                print("make a correct bet {}.".format(balance))
+        except ValueError:
+            print("enter a valid number")
 
 
 def create_missing_files():
@@ -41,17 +38,17 @@ def game_logic():
         }
 
         chances = {
-            "apple": 20,
-            "pear": 10,
-            "zero": 30,
-            "cherry": 5,
-            "orange": 35,
-            "jackpot": 0.00000000000001
+            "apple": 0.2,
+            "pear": 0.1,
+            "zero": 0.3,
+            "cherry": 0.1,
+            "orange": 0.2,
+            "jackpot": 0.1
         }
 
         def spin(chances):
             result = []
-            for _ in range(54):
+            for _ in range(3):
                 symbols = random.choices(Symbols, weights=list(chances.values()), k=3)
                 result.append(symbols)
             return result[0]
@@ -59,20 +56,18 @@ def game_logic():
 
         create_missing_files()
 
-
         try:
             with open("last_balance.txt", "r") as f:
                 content = f.read()
                 if content.strip():
-                    last_balance = float(content)
+                    balance = float(content)
                 else:
-                    last_balance = 0.0
+                    balance = float(input("Enter your initial balance: "))
         except FileNotFoundError:
-            last_balance = 0.0
-
-        bet = get_Bet()
+            balance = float(input("Enter your initial balance: "))
 
         while True:
+            bet = get_Bet(balance)
             spin_result = spin(chances)
             print("\nSpinning The Wheel\n")
             time.sleep(3)
@@ -85,37 +80,26 @@ def game_logic():
             convertations = [Coefficient[word] for word in spin_result]
             avg = mean(convertations)
             average = (round(avg))
-            balance = average * bet
-            print("Your winnings are", balance, "$\n")
-
+            win = average * bet
+            balance += win
+            print("Your winnings are", win, "$\n")
+            print("Your current balance is", balance, "$\n")
 
             with open("last_balance.txt", "w") as f:
                 f.write(str(balance))
 
             with open("Data_Base.txt", "a") as file:
-                file.write(str(balance) + "\n")
+                file.write(str(win) + "\n")
 
-            if input("take bet and get away (yes/no): ").lower() != "no":
-                if os.name == 'nt':
-                    os.system('cls')
-                elif 'TERM' in os.environ:
-                    os.system('clear')
+            if input("Continue playing (yes/no): ").lower() != "yes":
                 break
 
-            with open("Balance.txt", "w") as f:
-                f.write(str(balance))
     except KeyboardInterrupt:
         raise KeyboardInterrupt
     except Exception as e:
         print("An error occurred:", e)
-        print("Debug information:")
-        print("Bet:", bet)
-        print("Spin result:", spin_result)
         with open("Fatal_error.txt", "a") as f:
             f.write("An error occurred: " + str(e) + "\n")
-            f.write("Debug information:\n")
-            f.write("Bet: " + str(bet) + "\n")
-            f.write("Spin result: " + str(spin_result) + "\n")
 
 
 game_logic()
