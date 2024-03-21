@@ -1,16 +1,20 @@
 import random
 import math
 import time
-
-
 from statistics import mean
+
+
 def get_Bet():
     while True:
-        Bet = input("Make A Bet:")
+        Bet = input("Make A Bet: ")
         if Bet.isdigit():
-            return int(Bet)
+            if int(Bet) < 101:
+                return int(Bet)
+            else:
+                print("Your Bet:", Bet, "is too high")
         else:
-            print("Your Bet:   ", Bet, "is incorrect")
+            print("Your Bet:", Bet, "is incorrect")
+
 
 def game_logic():
     Symbols = ["apple", "pear", "cherry", "orange", "jackpot", "zero"]
@@ -43,7 +47,7 @@ def game_logic():
         bet = get_Bet()
         if bet:
             spin_result = spin(chances)
-            print("Spinning The Wheel\n")
+            print("\nSpinning The Wheel\n")
             time.sleep(3)
 
             for _ in range(3):
@@ -58,6 +62,14 @@ def game_logic():
     Balance = average * bet
     print("your winnings are", Balance , "$")
 
+    with open("data_base", "a") as file:
+        file.write(str(Balance) + "\n")
+
+    if input("Wanna Continue (yes/no): ").lower() != "yes":
+        break
 
 game_logic()
+
+
+
 
