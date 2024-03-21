@@ -12,14 +12,13 @@ def get_Bet(balance):
             if bet > 0 and bet <= balance:
                 return bet
             else:
-                print("make a correct bet {}.".format(balance))
+                print("make a correct bet!\n your max bet can be {}.".format(balance))
         except ValueError:
             print("enter a valid number")
 
 
 def create_missing_files():
-    # Перевірка наявності файлів та їх створення, якщо вони відсутні
-    for filename in ["last_balance.txt", "Balance.txt", "Data_Base.txt", "Fatal_error.txt"]:
+    for filename in ["last_balance.txt", "Balance.txt", "Data_Base.txt", "Fatal_error.txt"]: #Balance не реалізовано
         if not os.path.exists(filename):
             with open(filename, "w") as f:
                 f.write("")
@@ -62,9 +61,21 @@ def game_logic():
                 if content.strip():
                     balance = float(content)
                 else:
-                    balance = float(input("Enter your initial balance: "))
+                    while True:
+                        initial_balance = input("how much dib you buy?  ")
+                        if initial_balance.isdigit():
+                            balance = float(initial_balance)
+                            break
+                        else:
+                            print("enter a valid number.")
         except FileNotFoundError:
-            balance = float(input("Enter your initial balance: "))
+            while True:
+                initial_balance = input("how much dib you buy?  ")
+                if initial_balance.isdigit():
+                    balance = float(initial_balance)
+                    break
+                else:
+                    print("enter a valid number.")
 
         while True:
             bet = get_Bet(balance)
