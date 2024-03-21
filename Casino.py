@@ -18,7 +18,7 @@ def get_Bet(balance):
 
 
 def create_missing_files():
-    for filename in ["last_balance.txt", "Balance.txt", "Data_Base.txt", "Fatal_error.txt"]: #Balance не реалізовано
+    for filename in ["last_balance.txt", "Balance.txt", "Data_Base.txt", "Fatal_error.txt"]:
         if not os.path.exists(filename):
             with open(filename, "w") as f:
                 f.write("")
@@ -103,6 +103,7 @@ def game_logic():
                 file.write(str(win) + "\n")
 
             if input("Continue playing (yes/no): ").lower() != "yes":
+                clear_screen()
                 break
 
     except KeyboardInterrupt:
@@ -112,5 +113,10 @@ def game_logic():
         with open("Fatal_error.txt", "a") as f:
             f.write("An error occurred: " + str(e) + "\n")
 
+def clear_screen():
+    if os.name == 'nt':
+        os.system('cls')
+    elif 'TERM' in os.environ:
+        os.system('clear')
 
 game_logic()
